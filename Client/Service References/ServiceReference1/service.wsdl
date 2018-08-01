@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="card" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_icard_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="icard_cardvalidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:cardvalidate" />
+  </wsdl:message>
+  <wsdl:message name="icard_cardvalidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cardvalidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="icard_cardvalidate_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="icard_expValidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:expValidate" />
+  </wsdl:message>
+  <wsdl:message name="icard_expValidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:expValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="icard_expValidate_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="icard_cvvValidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:cvvValidate" />
+  </wsdl:message>
+  <wsdl:message name="icard_cvvValidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cvvValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="icard_cvvValidate_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="icard_transaction_InputMessage">
+    <wsdl:part name="parameters" element="tns:transaction" />
+  </wsdl:message>
+  <wsdl:message name="icard_transaction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:transactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="icard_transaction_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ArgumentException" />
+  </wsdl:message>
+  <wsdl:portType name="icard">
+    <wsdl:operation name="cardvalidate">
+      <wsdl:input wsaw:Action="http://tempuri.org/icard/cardvalidate" message="tns:icard_cardvalidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/icard/cardvalidateResponse" message="tns:icard_cardvalidate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/icard/cardvalidateArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:icard_cardvalidate_ArgumentExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="expValidate">
+      <wsdl:input wsaw:Action="http://tempuri.org/icard/expValidate" message="tns:icard_expValidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/icard/expValidateResponse" message="tns:icard_expValidate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/icard/expValidateArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:icard_expValidate_ArgumentExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cvvValidate">
+      <wsdl:input wsaw:Action="http://tempuri.org/icard/cvvValidate" message="tns:icard_cvvValidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/icard/cvvValidateResponse" message="tns:icard_cvvValidate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/icard/cvvValidateArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:icard_cvvValidate_ArgumentExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="transaction">
+      <wsdl:input wsaw:Action="http://tempuri.org/icard/transaction" message="tns:icard_transaction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/icard/transactionResponse" message="tns:icard_transaction_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/icard/transactionArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:icard_transaction_ArgumentExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_icard" type="tns:icard">
+    <wsp:PolicyReference URI="#NetTcpBinding_icard_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="cardvalidate">
+      <soap12:operation soapAction="http://tempuri.org/icard/cardvalidate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ArgumentExceptionFault">
+        <soap12:fault use="literal" name="ArgumentExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="expValidate">
+      <soap12:operation soapAction="http://tempuri.org/icard/expValidate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ArgumentExceptionFault">
+        <soap12:fault use="literal" name="ArgumentExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cvvValidate">
+      <soap12:operation soapAction="http://tempuri.org/icard/cvvValidate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ArgumentExceptionFault">
+        <soap12:fault use="literal" name="ArgumentExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transaction">
+      <soap12:operation soapAction="http://tempuri.org/icard/transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ArgumentExceptionFault">
+        <soap12:fault use="literal" name="ArgumentExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="card">
+    <wsdl:port name="NetTcpBinding_icard" binding="tns:NetTcpBinding_icard">
+      <soap12:address location="net.tcp://localhost:6500/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:6500/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
